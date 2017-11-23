@@ -1,0 +1,15 @@
+{
+    "name": "erupakov/checkbtc",
+    "description": "Utility handling getting address balances from the list",
+    "type": "project",
+    "require": {
+    },
+    "license": "AFL2",
+    "authors": [
+        {
+            "name": "Eugene Rupakov",
+            "email": "eugene.rupakov@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
