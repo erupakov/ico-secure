@@ -17,7 +17,7 @@ const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
 
 $fname = SIGNFILENAME;
 
-if (argc>1) {
+if ($argc>1) {
     $fname = $argv[1];
 }
 

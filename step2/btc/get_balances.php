@@ -36,33 +36,35 @@ $addresses = json_decode($rfile, true);
 $bitcoin = new Bitcoin(USERNAME, USERPASS, 'localhost', BITCOIND_PORT);
 
 foreach ($addresses as $addr) {
-// process each entry
-    $bal = $bitcoin->getbalance($addr['address']);
-    $addr['balance'] = $bal;
+	// process each entry
+    // list unspent txns
+    $income_tx = $bitcoin->listunspent(1, 99999999, [$addr['address']]);
+    $input_txs = [];
+	$bal = 0;
 
-    if ($bal>0) {
-        // list unspent txns
-        $income_tx = $bitcoin->listunspent(1, 99999999, $addr['address']);
-		print_r($income_tx);
-        $input_txs = [];
-        $itx_count = 0;
-
+	if ($income_tx) {
         foreach ($income_tx as $itx) { // prepare a list of all incoming transactions
-            $k = ['txid'=>$itx['txid'], 'vout'=>$itx_count ];
-            $input_txs[] = $k;
-            $itx_count++;
+        	$k = ['txid'=>$itx['txid'], 'vout'=>0 ];
+	        $input_txs[] = $k;
+			$bal += $itx['amount'];
         }
+		$bal = round($bal,8);
 
-        // prepare raw tx
-        $tx_chg = [ RECIPIENT_ADDRESS=>$bal-TRANSACTION_FEE, $addr['address']=>0 ];
+	    // prepare raw tx
+	    $tx_chg = [ RECIPIENT_ADDRESS=>$bal-TRANSACTION_FEE, $addr['address']=>0 ];
+
 		print_r($tx_chg);
+	    $rawtx = $bitcoin->createrawtransaction( $input_txs, $tx_chg);
+		if ($rawtx===false) {
+			echo 'Error creating transaction: '.$bitcoin->error.PHP_EOL;
+			print_r($input_txs);
+			print_r($tx_chg);
+		}
 
-        $rawtx = $bitcoin->createrawtransaction($input_txs, $tx_chg);
-
-        $addr['tx'] = $rawtx;
-        // only accounts with balance>0 count
+	    $addr['tx'] = $rawtx;
+	    $addr['balance'] = $bal;
 	    array_push($resList, $addr);
-    }
+	}
 }
 
 file_put_contents('balances.json', json_encode($resList));

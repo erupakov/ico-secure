@@ -19,11 +19,11 @@ const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
 $txn_fname = TXNFILENAME;
 $sec_fname = SECFILENAME;
 
-if (argc>1) {
+if ($argc>1) {
     $txn_fname = $argv[1];
 }
 
-if (argc>2) {
+if ($argc>2) {
     $sec_fname = $argv[2];
 }
 
@@ -56,13 +56,20 @@ $bitcoin = new Bitcoin(USERNAME, USERPASS, 'localhost', BITCOIND_PORT);
 foreach ($txns as $txn) {
 // process each entry
     $pk = $sorted_pvt_keys[$txn['address']];
-    $res = $bitcoin->signrawtransaction($txn['tx'], null, [$pk]);
+    $res = $bitcoin->signrawtransaction($txn['tx'], null, [$pk], 'ALL');
+
+	print_r($res);
+
+	if ($res===false) {
+        echo 'Error signing TXN for address '.$txn['address'].':'.$bitcoin->error.PHP_EOL;
+        continue;
+	}
 
     if ($res['complete']) {
         $n = ['address'=>$txn['address'], 'tx'=>$res['hex']];
         array_push($resList, $n);
     } else {
-        echo 'Error signing TXN for address '.$txn['address'].PHP_EOL;
+        echo 'Error signing TXN for address '.$txn['address'].':'.$bitcoin->error.PHP_EOL;
         continue;
     }
 }
