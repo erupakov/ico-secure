@@ -1,55 +1,38 @@
 #!/usr/bin/env node
 /* jshint esversion: 6 */
-'use strict';
+'use strict'
 
-const program = require('commander'),
-		chalk = require("chalk"),
-		Web3 = require('web3'),
-	    exec = require('child_process').exec,
-	    pkg = require('./package.json');
+var Transaction = require('ethereumjs-tx')
 
-// set provider for all later instances to use
-if (typeof web3 !== 'undefined') {
-    var web3 = new Web3(web3.currentProvider);
-} else {
-    var web3 = new Web3(Web3.givenProvider || 'ws://localhost:8546');
-}
+// create a blank transaction
+var tx = new Transaction(null, 1) // mainnet Tx EIP155
 
-let checkBalances = (list, options) => {
-	const cmd = 'ls';
-	let params = [];
-	if (options.all) params.push('a');
-	if (options.long) params.push('l');
-	let fullCommand = params.length 
-	                  ? cmd + ' -' + params.join('')
-	                  : cmd
-	if (directory) fullCommand += ' ' + directory;
-	let output = (error, stdout, stderr) => {
-	    if (error) console.log(chalk.red.bold.underline("exec error:") + error);
-	    if (stdout) console.log(chalk.green.bold.underline("Result:") + stdout);
-	    if (stderr) console.log(chalk.red("Error: ") + stderr);
-	};
-	exec(fullCommand, execCallback);
-}
+// So now we have created a blank transaction but Its not quiet valid yet. We
+// need to add some things to it. Lets start:
+// notice we don't set the `to` field because we are creating a new contract.
+tx.nonce = 0
+tx.gasLimit = 21000
+tx.value = 0
+tx.data = ''
+tx.to =''
+tx.from = ''
 
-let getAddressBalance = (addr) => {
-	return web3.eth.getBalance(addr)
-		.then(function(res) {
-			return res;
-		}, function(err) {
-			console.log(err);
-		}
-	);
-};
+var privateKey = new Buffer('e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109', 'hex')
+tx.sign(privateKey)
+// We have a signed transaction, Now for it to be fully fundable the account that we signed
+// it with needs to have a certain amount of wei in to. To see how much this
+// account needs we can use the getUpfrontCost() method.
+var feeCost = tx.getUpfrontCost()
+tx.gas = feeCost
+console.log('Total Amount of wei needed:' + feeCost.toString())
 
-program
-	.version('0.1.0')
-	.command('check [listfile]')
-	.description('Ethereum balance checker')
-	.option('-a, --all','Check and output all addresses')
-	.action(checkBalances);
+// if your wondering how that is caculated it is
+// bytes(data length) * 5
+// + 500 Default transaction fee
+// + gasAmount * gasPrice
 
-program.parse(process.argv);
+// lets serialize the transaction
 
-// if program was called with no arguments, show help.
-if (program.args.length === 0) program.help();
+console.log('---Serialized TX----')
+console.log(tx.serialize().toString('hex'))
+console.log('--------------------')

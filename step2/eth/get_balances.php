@@ -33,7 +33,7 @@ $geth= new Ethereum(GETH_URL);
 
 foreach ($addresses as $addr) {
 // process each entry
-    $bal = $geth->eth_getBalance($addr['address'],'latest');
+    $bal = $geth->eth_getBalance($addr['address'], 'latest');
     $addr['balance'] = $bal;
 
     array_push($resList, $addr);        

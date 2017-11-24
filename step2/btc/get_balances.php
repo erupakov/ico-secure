@@ -13,12 +13,12 @@ require_once 'easybitcoin.php';
 const PUBFILENAME = 'publiclist.json';
 const USERNAME = 'taurus';
 const USERPASS = 'Qwerty123';
-const RECIPIENT_ADDRESS = 'myBqKQCepHr6rpsWtTQimyXGFDiV6s41km'; // address to send BTC to
-const TRANSACTION_FEE = 0.3 / 1000; // in mBTCs
+const RECIPIENT_ADDRESS = 'n3ap6PJwboX1MnuSp5aZLK6Sq6dyr93fMQ'; // address to send BTC to
+const TRANSACTION_FEE = 0.1 / 1000; // in mBTCs
 const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
 
 $fname = PUBFILENAME;
-if (argc>1) {
+if ($argc>1) {
     $fname = $argv[1];
 }
 
@@ -43,6 +43,7 @@ foreach ($addresses as $addr) {
     if ($bal>0) {
         // list unspent txns
         $income_tx = $bitcoin->listunspent(1, 99999999, $addr['address']);
+		print_r($income_tx);
         $input_txs = [];
         $itx_count = 0;
 
@@ -54,12 +55,13 @@ foreach ($addresses as $addr) {
 
         // prepare raw tx
         $tx_chg = [ RECIPIENT_ADDRESS=>$bal-TRANSACTION_FEE, $addr['address']=>0 ];
+		print_r($tx_chg);
+
         $rawtx = $bitcoin->createrawtransaction($input_txs, $tx_chg);
 
         $addr['tx'] = $rawtx;
-
         // only accounts with balance>0 count
-        array_push($resList, $addr);        
+	    array_push($resList, $addr);
     }
 }
 
