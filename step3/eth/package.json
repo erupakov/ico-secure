@@ -1,5 +1,5 @@
 {
-  "name": "eth-step2",
+  "name": "eth-step3",
   "version": "1.0.0",
   "description": "Utility to sign Ethereum raw transactions given the list of addresses",
   "main": "index.js",
