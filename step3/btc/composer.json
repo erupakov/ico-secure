@@ -1,0 +1,15 @@
+{
+    "name": "erupakov/signbtc",
+    "description": "Utility handling signing raw transactions",
+    "type": "project",
+    "require": {
+    },
+    "license": "AFL2",
+    "authors": [
+        {
+            "name": "Eugene Rupakov",
+            "email": "eugene.rupakov@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
