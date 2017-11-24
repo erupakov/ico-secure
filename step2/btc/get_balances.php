@@ -1,14 +1,21 @@
 <?php
 /**
  * Script to extract addresses balances and create raw txs
+ * may be called like this: php get_balances.php [publiclist.json]
+ * 
+ * @author  Eugene Rupakov <eugene.rupakov@gmail.com>
+ * @license http://www.apache.org/licenses/LICENSE-2.0, AFL-2
+ * @link    http://www.github.com/erupakov
  */
-require_once('easybitcoin.php');
+
+require_once 'easybitcoin.php';
 
 const PUBFILENAME = 'publiclist.json';
 const USERNAME = 'taurus';
 const USERPASS = 'Qwerty123';
 const RECIPIENT_ADDRESS = 'myBqKQCepHr6rpsWtTQimyXGFDiV6s41km'; // address to send BTC to
 const TRANSACTION_FEE = 0.3 / 1000; // in mBTCs
+const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
 
 $fname = PUBFILENAME;
 if (argc>1) {
@@ -26,7 +33,7 @@ $resList = [];
 
 $addresses = json_decode($rfile, true);
 
-$bitcoin = new Bitcoin(USERNAME, USERPASS, 'localhost', 18332);
+$bitcoin = new Bitcoin(USERNAME, USERPASS, 'localhost', BITCOIND_PORT);
 
 foreach ($addresses as $addr) {
 // process each entry
@@ -51,7 +58,7 @@ foreach ($addresses as $addr) {
 
         $addr['tx'] = $rawtx;
 
-        // only filled accounts count
+        // only accounts with balance>0 count
         array_push($resList, $addr);        
     }
 }
