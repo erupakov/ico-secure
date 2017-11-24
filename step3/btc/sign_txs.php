@@ -14,7 +14,7 @@ const TXNFILENAME = 'balances.json';
 const SECFILENAME = 'secretlist.json';
 const USERNAME = 'taurus';
 const USERPASS = 'Qwerty123';
-const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
+const BITCOIND_PORT = 8332; // 18332 for testnet, 8332 for mainnet
 
 $txn_fname = TXNFILENAME;
 $sec_fname = SECFILENAME;

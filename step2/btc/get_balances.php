@@ -15,7 +15,7 @@ const USERNAME = 'taurus';
 const USERPASS = 'Qwerty123';
 const RECIPIENT_ADDRESS = 'n3ap6PJwboX1MnuSp5aZLK6Sq6dyr93fMQ'; // address to send BTC to
 const TRANSACTION_FEE = 0.1 / 1000; // in mBTCs
-const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet
+const BITCOIND_PORT = 8332; // 18332 for testnet, 8332 for mainnet
 
 $fname = PUBFILENAME;
 if ($argc>1) {
