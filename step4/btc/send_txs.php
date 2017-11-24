@@ -10,7 +10,7 @@
 
 require_once 'easybitcoin.php';
 
-const TXNFILENAME = 'signed.json';
+const SIGNFILENAME = 'signed.json';
 const USERNAME = 'taurus';
 const USERPASS = 'Qwerty123';
 const BITCOIND_PORT = 18332; // 18332 for testnet, 8332 for mainnet

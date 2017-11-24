@@ -1,7 +1,7 @@
 {
   "name": "eth-step2",
   "version": "1.0.0",
-  "description": "Utility to check Ethereum addresses balances given the list of addresses",
+  "description": "Utility to sign Ethereum raw transactions given the list of addresses",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,8 +14,6 @@
   "author": "Eugene Rupakov <euhene.rupakov@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^2.3.0",
-    "commander": "^2.11.0",
-    "web3": "^1.0.0-beta.26"
+    "ethereumjs-tx": "^1.3.3"
   }
 }

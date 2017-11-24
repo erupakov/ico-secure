@@ -1,0 +1,16 @@
+{
+    "name": "erupakov/ico-secure",
+    "description": "A set of scripts to secure ICOs",
+    "type": "project",
+    "license": "AFL-2",
+    "authors": [
+        {
+            "name": "Eugene Rupakov",
+            "email": "eugene.rupakov@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "digitaldonkey/ethereum-php": "dev-master"
+    }
+}
