@@ -12,7 +12,7 @@ pub=$(printf "%s\n" $keys | grep pub -A 5 | tail -n +2 | tr -d '\n[:space:]:' | 
 addr=0x$(echo $pub | ./keccak-256sum -x -l | tr -d ' -' | tail -c 41) 
 
 echo '{'
-echo '"private":"'$priv'"'
+echo '"private":"'$priv'",'
 echo '"address":"'$addr'"'
 echo '}'
 
