@@ -10,11 +10,15 @@
 
 require_once 'vendor/autoload.php';
 
+use Ethereum\Ethereum;
+use Ethereum\EthBlockParam;
+use Ethereum\EthD20;
+
 const PUBFILENAME = 'publiclist.json';
 const GETH_URL = 'http://localhost:8545';
 
 $fname = PUBFILENAME;
-if (argc>1) {
+if ($argc>1) {
     $fname = $argv[1];
 }
 
@@ -33,10 +37,11 @@ $geth= new Ethereum(GETH_URL);
 
 foreach ($addresses as $addr) {
 // process each entry
-    $bal = $geth->eth_getBalance($addr['address'], 'latest');
-    $addr['balance'] = $bal;
+    $ethAddr = new EthD20($addr['address']);
+    $bal = $geth->eth_getBalance($ethAddr,new EthBlockParam());
+    $addr['balance'] = $bal->value->value;
 
-    array_push($resList, $addr);        
+    array_push($resList, $addr);
 }
 
 file_put_contents('balances.json', json_encode($resList));
