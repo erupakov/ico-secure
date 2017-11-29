@@ -1,0 +1,15 @@
+{
+    "name": "erupakov/sendtx",
+    "description": "Utility sending signed txs to the net",
+    "type": "project",
+    "require": {
+    },
+    "license": "AFL2",
+    "authors": [
+        {
+            "name": "Eugene Rupakov",
+            "email": "eugene.rupakov@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
