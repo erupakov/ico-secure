@@ -32,7 +32,7 @@ function createTransaction(pKey, to, balance) {
     // need to add some things to it. Lets start:
     // notice we don't set the `to` field because we are creating a new contract.
     tx.nonce = 0
-    tx.gasLimit = 21000
+    tx.gasLimit = 21000 // standard transaction fee
     tx.value = balance - 21000;
     tx.data = ''
     tx.to = to
