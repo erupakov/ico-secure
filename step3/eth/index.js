@@ -2,6 +2,8 @@
 /* jshint esversion: 6 */
 'use strict'
 
+var fs = require('fs');
+
 var Transaction = require('ethereumjs-tx')
 
 // create a blank transaction

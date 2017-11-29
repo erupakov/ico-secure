@@ -11,7 +11,7 @@
     "balance",
     "list"
   ],
-  "author": "Eugene Rupakov <euhene.rupakov@gmail.com>",
+  "author": "Eugene Rupakov <eugene.rupakov@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "ethereumjs-tx": "^1.3.3"
