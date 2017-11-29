@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "640ffa267090a338aec3ad145d62fdea",
     "content-hash": "7cb64d2fc8d480561936fedf260f6566",
     "packages": [
         {
@@ -45,7 +46,7 @@
                 }
             ],
             "description": "A library integrating Ethereum with typed PHP.",
-            "time": "2017-11-23T00:31:04+00:00"
+            "time": "2017-11-23 00:31:04"
         },
         {
             "name": "graze/guzzle-jsonrpc",
@@ -104,7 +105,7 @@
                 "ring",
                 "rpc"
             ],
-            "time": "2016-02-16T15:18:21+00:00"
+            "time": "2016-02-16 15:18:21"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -169,7 +170,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-06-22T18:50:49+00:00"
+            "time": "2017-06-22 18:50:49"
         },
         {
             "name": "guzzlehttp/promises",
@@ -220,7 +221,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-12-20T10:07:11+00:00"
+            "time": "2016-12-20 10:07:11"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -285,7 +286,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20T17:10:46+00:00"
+            "time": "2017-03-20 17:10:46"
         },
         {
             "name": "pear/math_biginteger",
@@ -334,7 +335,7 @@
                 "integer",
                 "precision"
             ],
-            "time": "2016-04-12T05:46:52+00:00"
+            "time": "2016-04-12 05:46:52"
         },
         {
             "name": "psr/http-message",
@@ -384,7 +385,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         }
     ],
     "packages-dev": [],

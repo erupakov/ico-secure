@@ -10,11 +10,14 @@
 
 require_once 'vendor/autoload.php';
 
+use Ethereum\Ethereum;
+use Ethereum\EthD;
+
 const SIGNFILENAME = 'signed.json';
 const GETH_URL = 'http://localhost:8545';
 
 $fname = SIGNFILENAME;
-if (argc>1) {
+if ($argc>1) {
     $fname = $argv[1];
 }
 
@@ -33,8 +36,8 @@ $geth= new Ethereum(GETH_URL);
 
 foreach ($addresses as $addr) {
 // process each entry
-    $res = $geth->client->eth_sendRawTransaction($addr['tx']);
-    $addr['result'] = $res;
+    $res = $geth->eth_sendRawTransaction(new EthD($addr['tx']));
+    $addr['result'] = $res->value;
 
     array_push($resList, $addr);
 }
