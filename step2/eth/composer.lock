@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/digitaldonkey/ethereum-php.git",
-                "reference": "d1ebddd65612f4056fc4033684ddd86188fbd2c8"
+                "reference": "d009bc814a8160d67828b253abe616431159c283"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitaldonkey/ethereum-php/zipball/d1ebddd65612f4056fc4033684ddd86188fbd2c8",
-                "reference": "d1ebddd65612f4056fc4033684ddd86188fbd2c8",
+                "url": "https://api.github.com/repos/digitaldonkey/ethereum-php/zipball/d009bc814a8160d67828b253abe616431159c283",
+                "reference": "d009bc814a8160d67828b253abe616431159c283",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "A library integrating Ethereum with typed PHP.",
-            "time": "2017-11-23 00:31:04"
+            "time": "2017-12-07 21:17:58"
         },
         {
             "name": "graze/guzzle-jsonrpc",
