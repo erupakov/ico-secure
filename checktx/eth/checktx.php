@@ -29,4 +29,4 @@ for ($row_no = 0; $row_no<$dbres->num_rows; $row_no++ ) {
 }
 $mysql_cli->close();
 
-file_put_contents('eth_transactions.json', json_encode($result));
+file_put_contents('eth_transactions-20171217.json', json_encode($result));
