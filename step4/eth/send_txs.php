@@ -14,7 +14,7 @@ use Ethereum\Ethereum;
 use Ethereum\EthD;
 
 const SIGNFILENAME = 'signed.json';
-const GETH_URL = 'http://localhost:8545';
+const GETH_URL = 'http://192.168.10.30:8545';
 
 $fname = SIGNFILENAME;
 if ($argc>1) {
