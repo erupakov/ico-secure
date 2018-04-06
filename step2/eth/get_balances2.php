@@ -40,7 +40,7 @@ foreach ($addresses as $addr) {
 // process each entry
     $ethAddr = new EthD20($addr['address']);
     $bal = $geth->eth_getBalance($ethAddr,new EthBlockParam());
-    $addr['balance'] = $bal->value->value;
+    $addr['balance'] = $addr->matRate;
     $addr['required'] = $addr->amount;
 
     array_push($resList, $addr);
